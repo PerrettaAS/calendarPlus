@@ -1,0 +1,20 @@
+<template name="header">
+	<div class="container-fluid header-container">
+		<div class="row">
+			<nav class="col-xs-12">
+				<div class="logo col-xs-6">
+					<h1><i class="fa fa-calendar-o"></i>Calendar+</h1>
+				</div>
+				<ul class="col-xs-6">
+				    {{#if currentUser }}
+				        <li id="nav-logout">Logout</li>
+				    	<li id="nav-dashboard">Dashboard</li>
+				    {{else}}
+				        <li id="nav-login">Login</li>
+				        <li id="nav-register">Register</li>
+				    {{/if}}
+				</ul>
+			</nav>
+		</div>
+	</div>
+</template>

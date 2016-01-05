@@ -1,0 +1,40 @@
+nav {
+	height: 50px;
+	background-color: #000000;
+	color: #FFFFFF;
+	margin-bottom: 0px;
+}
+
+.logo {
+	display: inline-block;
+}
+
+.logo h1 { 
+	margin: 0px;
+	padding: 0px;
+	font-family: "Lato", sans-serif;
+	font-size: 200%;
+	line-height: 50px;
+}
+
+.logo h1 i { 
+	margin-right: 5px;
+}
+
+nav ul.col-xs-6 {
+	display: inline-block;
+	list-style: none;
+	float: right;
+	height: 50px;
+}
+
+nav ul li {
+	position: relative;
+	color: #FFFFFF;
+	float: right;
+	line-height: 50px;
+	margin-right: 10%;
+	font-family: "Lato", sans-serif;
+	font-size: 150%;
+	cursor: pointer;
+}

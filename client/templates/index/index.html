@@ -1,4 +1,8 @@
 <template name="index">
-	{{ > login }}
+	{{#if currentUser }}
+		{{ > dashboard}}
+	{{ else }}
+		{{ > login }}
+	{{/if}}
 	<!-- Footer -->
 </template>

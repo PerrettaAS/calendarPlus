@@ -1,11 +1,9 @@
-body {
-    padding-top: 90px;
-}
 .panel-login {
 	border-color: #ccc;
 	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	margin-top: 3vh;
 }
 .panel-login>.panel-heading {
 	color: #00415d;
@@ -98,10 +96,13 @@ body {
 	border-color: #1CA347;
 }
 .social-buttons{
-    margin:12px 0    
+	text-align: center;
+    margin: 12px 0;
+    margin-bottom: 10px;
 }
 .social-buttons a{
     width: 49.6%;
+    margin-bottom: 5px;
 }
 
 .btn-fb{
@@ -119,4 +120,30 @@ body {
 .btn-tw:hover{
     color: #fff;
     background-color:#59b5fa;
+}
+.login-logo-container {
+	margin: 0px;
+	padding: 0px;
+}
+
+.logo-description {
+	margin-top: 0px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #088A4B;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.login-logo {
+	font-size: 400%;
+}
+
+.login-logo i { 
+	margin-right: 5px;
+}
+
+.logo-details {
+	padding-top: 25px;
+	font-size: 200%;
 }
