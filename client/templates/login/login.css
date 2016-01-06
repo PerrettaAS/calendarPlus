@@ -52,7 +52,7 @@
 	border-color: #ccc;
 }
 .btn-login {
-	background-color: #59B2E0;
+	background-color: #088A4B;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -65,7 +65,7 @@
 .btn-login:hover,
 .btn-login:focus {
 	color: #fff;
-	background-color: #53A3CD;
+	background-color: #1CA347;
 	border-color: #53A3CD;
 }
 .forgot-password {
@@ -79,7 +79,7 @@
 }
 
 .btn-register {
-	background-color: #1CB94E;
+	background-color: #088A4B;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
