@@ -1,0 +1,8 @@
+.dashboard-container {
+	margin: 0px;
+	padding: 15px;
+}
+
+.content-container {
+	min-height: 100vh;
+}
