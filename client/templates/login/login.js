@@ -19,7 +19,8 @@ Template.login.events({
         Accounts.createUser({
             username: username,
             email: email,
-            password: password
+            password: password,
+            events: []
         }, function(error){
 		    if(error){
 		        alert(error.reason);

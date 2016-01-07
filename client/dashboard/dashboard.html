@@ -2,10 +2,58 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="dashboard-container col-xs-12">
-				<div class="content-container col-xs-9">
+				<div class="content-container col-xs-4">
 					hi
 				</div>
-				<div class="calendar col-xs-3">
+				<div class="day-calendar content-container col-xs-4">
+					<div class="add-event-container">
+						<div class="event-container">
+							<form class="form-horizontal" role="form">
+								<h1>Add Task & Event</h1>
+								<div class="form-group">
+									<label class="control-label col-xs-2">Title:</label>
+									<div class="col-xs-4">
+										<input type="text" class="form-control" id="title" placeholder="Snowboarding...">
+									</div>
+									<label class="control-label col-xs-2">Color:</label>
+									<div class="col-xs-2">
+										<input type="color" id="html5colorpicker" onchange="clickColor(0, -1, -1, 5)" value="#000000" style="width:100%; margin-top: 5px">
+									</div>
+									<div class="col-sm-2">
+										<div class="checkbox">
+											<label><input id="all-day" type="checkbox"> All Day</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-3" for="pwd">Start Date:</label>
+									<div class="input-group datetimepicker1 col-xs-8">
+									    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+									    <input id="start-date" class="set-due-date form-control" type="text"/>
+									</div>
+									<label class="control-label col-xs-3" for="pwd">End Date:</label>
+									<div class="input-group datetimepicker2 col-xs-8">
+									    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+									    <input id="end-date" class="set-due-date form-control" type="text"/>
+									</div>
+								</div>
+								<div class="form-group">
+								  	<label for="comment">Event Description:</label>
+								  	<textarea class="form-control" rows="4" id="comment"></textarea>
+								</div>
+								<div class="form-group"> 
+									<div class="col-xs-12">
+										<button type="submit" class="btn btn-default" id="submit-add-event">Add Event</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="calendar col-xs-4">
+					
+				</div>
+				<div class="col-xs-4">
 					
 				</div>
 			</div>
