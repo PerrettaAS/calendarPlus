@@ -6,7 +6,7 @@ Template.dashboard.rendered = function () {
 	    	right  : 'basicDay,basicWeek,month',
 	    },
 	    dayClick: function(date) {
-	        alert('Clicked on: ' + date.format());
+	    	$('.day-calendar').fullCalendar('gotoDate', date);
 	    },
 	    eventClick: function(calEvent) {
 	    	let r = confirm("Are you sure you want to delete this event?");
@@ -20,7 +20,7 @@ Template.dashboard.rendered = function () {
 		header: {
 	     	left   : 'title',
 	    	center : '',
-	    	right  : 'agendaWeek,agendaDay',
+	    	right  : 'agendaDay',
 	    },
 	    eventClick: function(calEvent) {
 	    	let r = confirm("Are you sure you want to delete this event?");
