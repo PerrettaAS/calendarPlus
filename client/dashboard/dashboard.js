@@ -22,6 +22,13 @@ Template.dashboard.rendered = function () {
 	    	center : '',
 	    	right  : 'agendaWeek,agendaDay',
 	    },
+	    eventClick: function(calEvent) {
+	    	let r = confirm("Are you sure you want to delete this event?");
+			if (r == true) {
+	    		let title = calEvent.title;
+	    		removeEvent(eventIndex(title), calEvent.id);
+			}
+    	},
 	    defaultView: 'agendaDay'
 	});
 	$('.datetimepicker1').datetimepicker();
@@ -44,6 +51,7 @@ function removeEvent(eventIndex, id) {
 		desc.splice(eventIndex, 1);
 		Meteor.call('updateUser', Session.get('currentUser'), events, desc);
 		$('.calendar, .day-calendar').fullCalendar('removeEvents', id);
+		$('.calendar, .day-calendar').fullCalendar('addEventSource', events);
 	}
 }
 
@@ -59,7 +67,6 @@ function eventIndex(title) {
 	for (let e in events) {
 	    let t = events[e].title;
 	    if(t === title) {
-	    	console.log('remove');
 	    	return e;
 	    }
 	}
