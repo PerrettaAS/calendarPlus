@@ -17,16 +17,16 @@ Template.login.events({
         	return;
         }
         Accounts.createUser({
-            username: username,
-            email: email,
-            password: password,
-            events: []
+            'username': username,
+            'email': email,
+            'password': password,
+            'events': []
         }, function(error){
 		    if(error){
 		        alert(error.reason);
 		    } else {
+                Meteor.call('createNewUser', username);
 		        Meteor.loginWithPassword(username, password);
-		        console.log(Meteor.users.find().fetch());
 		        Session.set('currentUser', username);
 		    }
 		});

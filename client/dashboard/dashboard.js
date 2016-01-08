@@ -6,7 +6,6 @@ Template.dashboard.rendered = function () {
 	    	right  : 'basicDay,basicWeek,month',
 	    },
 	    dayClick: function(date) {
-	    	loadCalendar();
 	        alert('Clicked on: ' + date.format());
 	    },
 	});
@@ -20,6 +19,7 @@ Template.dashboard.rendered = function () {
 	});
 	$('.datetimepicker1').datetimepicker();
 	$('.datetimepicker2').datetimepicker();
+	loadCalendar();
 };
 
 Template.dashboard.events({
@@ -30,7 +30,10 @@ Template.dashboard.events({
 });
 
 function loadCalendar() {
-	$('.calendar, .day-calendar').fullCalendar('addEventSource', addCalanderEvent("Test event", "1/4/2016 12:00:00 AM", "1/7/2016 12:00:00 AM", "#0000FF", false));
+	if(AccountsCollection.findOne({'username' : Session.get('currentUser')}) === undefined) {
+		return;
+	}
+	$('.calendar, .day-calendar').fullCalendar('addEventSource', AccountsCollection.findOne({'username' : Session.get('currentUser')}).events);
 }
 
 function addNewEvent() {
@@ -41,7 +44,12 @@ function addNewEvent() {
 	let allDay = false;
 	if($('#all-day').val() !== "on") 
 		allDay = true;
-	$('.calendar, .day-calendar').fullCalendar('addEventSource', addCalanderEvent(title, start, end, color, allDay));
+	let event = addCalanderEvent(title, start, end, color, allDay);
+	$('.calendar, .day-calendar').fullCalendar('addEventSource', event);
+	let length = AccountsCollection.findOne({'username' : Session.get('currentUser')}).events.length;
+	let newEvents = AccountsCollection.findOne({'username' : Session.get('currentUser')}).events;
+	newEvents[length] = event;
+	Meteor.call('updateUser', Session.get('currentUser'), newEvents);
 	$('#title').val("");
 	$('#start-date').val("");
 	$('#end-date').val("");
