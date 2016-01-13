@@ -40,7 +40,9 @@ Template.login.events({
         	if(error) {
         		alert(error.reason);
         	} else {
-        		Session.set('currentUser', username);
+                $(".login-container").fadeOut(500, function() {
+                    Session.set('currentUser', username);
+                });
         	}
         });
     }

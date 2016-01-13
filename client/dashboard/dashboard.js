@@ -33,7 +33,7 @@ Template.dashboard.rendered = function () {
 	    		removeEvent(eventIndex(title), calEvent.id);
 			}
     	},
-    	height: (screen.width / 4.5),
+    	height: (screen.height / 2.5),
     	defaultView: 'agendaWeek'
 	});
 	$('.day-calendar').fullCalendar({
@@ -43,13 +43,12 @@ Template.dashboard.rendered = function () {
 	    	right  : '',
 	    },
 	    eventClick: function(calEvent) {
-	    	let r = confirm("Are you sure you want to delete this event?");
-			if (r == true) {
-	    		let title = calEvent.title;
-	    		removeEvent(eventIndex(title), calEvent.id);
-			}
+			$('#event-title').html("Event: <i>" + calEvent.title + "</i>");
+			$('#event-description-content').html(
+				AccountsCollection.findOne({'username' : Session.get('currentUser')}).desc[eventIndex(calEvent.title)]);
     	},
-	    defaultView: 'agendaDay'
+	    defaultView: 'agendaDay',
+	    height: (screen.height / 1.215)
 	});
 	$('.datetimepicker1').datetimepicker();
 	$('.datetimepicker2').datetimepicker();
@@ -62,6 +61,8 @@ Template.dashboard.events({
 		addNewEvent();
     },
 });
+
+selectedEvent = undefined
 
 function removeEvent(eventIndex, id) {
 	let events = AccountsCollection.findOne({'username' : Session.get('currentUser')}).events;
@@ -94,34 +95,37 @@ function eventIndex(title) {
 }
 
 function addNewEvent() {
-	let title = $('#title').val();
 	if(eventIndex(title) === -1) {
-		let start = $('#start-date').val();
-		let end = $('#end-date').val();
-		let color = $('#html5colorpicker').val();
-		let desc = $('#comment').val();
-		let allDay = false;
-		if($('#all-day').val() !== "on") 
-			allDay = true;
-		let event = addCalanderEvent(title, start, end, color, allDay);
+		let event = addCalanderEvent();
 		$('.calendar, .day-calendar, .calendar2').fullCalendar('addEventSource', event);
-		let length = AccountsCollection.findOne({'username' : Session.get('currentUser')}).events.length;
-		let newEvents = AccountsCollection.findOne({'username' : Session.get('currentUser')}).events;
+		let user = Session.get('currentUser');
+		let length = AccountsCollection.findOne({'username' : user}).events.length;
+		let newEvents = AccountsCollection.findOne({'username' : user}).events;
 		newEvents[length] = event;
-		let newDesc = AccountsCollection.findOne({'username' : Session.get('currentUser')}).desc;
-		newDesc[length] = desc;
-		Meteor.call('updateUser', Session.get('currentUser'), newEvents, newDesc);
-		$('#title').val("");
-		$('#start-date').val("");
-		$('#end-date').val("");
-		$('#html5colorpicker').val("#000000");
-		$('#all-day').val(false);
+		let newDesc = AccountsCollection.findOne({'username' : user}).desc;
+		newDesc[length] = $('#comment').val();
+		Meteor.call('updateUser', user, newEvents, newDesc);
+		resetForm();
 	} else {
 		alert("The title of this event already exists!");
 	}
 }
 
-function addCalanderEvent(title, start, end, color, allDay, desc) {
+function resetForm() {
+	$('#title').val("");
+	$('#start-date').val("");
+	$('#end-date').val("");
+	$('#html5colorpicker').val("#000000");
+	$('#all-day').val(false);
+}
+
+function addCalanderEvent() {
+	let title = $('#title').val();
+	let start = $('#start-date').val();
+	let end = $('#end-date').val();
+	let color = $('#html5colorpicker').val();
+	let desc = $('#comment').val();
+	let allDay = $('#all-day').val() !== "on" ? true : false;
     let eventObject = {
 	    'title': title,
 	    'start': start,

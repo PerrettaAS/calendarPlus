@@ -66,5 +66,23 @@ div .calendar, div .calendar2 {
 }
 
 .view-event-container {
-	padding: 10px;
+	padding-bottom: 10px;
+	display: inline;
 }
+
+#event-title {
+	text-align: center;
+	font-weight: bold;
+	font-size: 200%;
+}
+
+#event-description {
+	font-size: 150%;
+}
+
+#event-description-content {
+	text-indent: 15px
+}
+
+
+
