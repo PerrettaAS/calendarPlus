@@ -96,7 +96,7 @@ function eventIndex(title) {
 
 function addNewEvent() {
 	if(eventIndex(title) === -1) {
-		let event = addCalanderEvent();
+		let event = addCalendarEvent();
 		$('.calendar, .day-calendar, .calendar2').fullCalendar('addEventSource', event);
 		let user = Session.get('currentUser');
 		let length = AccountsCollection.findOne({'username' : user}).events.length;
@@ -119,7 +119,7 @@ function resetForm() {
 	$('#all-day').val(false);
 }
 
-function addCalanderEvent() {
+function addCalendarEvent() {
 	let title = $('#title').val();
 	let start = $('#start-date').val();
 	let end = $('#end-date').val();
