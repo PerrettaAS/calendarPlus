@@ -5,16 +5,19 @@ Template.dashboard.rendered = function () {
 	    	center : 'title',
 	    	right  : 'basicDay,basicWeek,month',
 	    },
+
 	    dayClick: function(date) {
 	    	$('.day-calendar').fullCalendar('gotoDate', date);
 	    },
+
 	    eventClick: function(calEvent) {
-	    	let r = confirm("Are you sure you want to delete this event?");
-			if (r == true) {
+	    	let confirmDelete = confirm("Are you sure you want to delete this event?");
+			if (confirmDelete) {
 	    		let title = calEvent.title;
 	    		removeEvent(eventIndex(title), calEvent.id);
 			}
     	},
+
     	height: (screen.width / 4.5)
 	});
 	$('.calendar2').fullCalendar({
@@ -52,7 +55,7 @@ Template.dashboard.rendered = function () {
 	});
 	$('.datetimepicker1').datetimepicker();
 	$('.datetimepicker2').datetimepicker();
-	loadCalendar();
+	loadCalendar(Session.get('currentUser'));
 };
 
 Template.dashboard.events({
@@ -76,8 +79,8 @@ function removeEvent(eventIndex, id) {
 	}
 }
 
-function loadCalendar() {
-	if(AccountsCollection.findOne({'username' : Session.get('currentUser')}) === undefined) {
+function loadCalendar(user) {
+	if(AccountsCollection.findOne({'username' : user}) === undefined) {
 		return;
 	}
 	$('.calendar, .day-calendar, .calendar2').fullCalendar('addEventSource', AccountsCollection.findOne({'username' : Session.get('currentUser')}).events);
@@ -95,14 +98,14 @@ function eventIndex(title) {
 }
 
 function addNewEvent() {
-	if(eventIndex(title) === -1) {
+	if (eventIndex(title) === -1) {
 		let event = addCalendarEvent();
-		$('.calendar, .day-calendar, .calendar2').fullCalendar('addEventSource', event);
 		let user = Session.get('currentUser');
 		let length = AccountsCollection.findOne({'username' : user}).events.length;
 		let newEvents = AccountsCollection.findOne({'username' : user}).events;
-		newEvents[length] = event;
 		let newDesc = AccountsCollection.findOne({'username' : user}).desc;
+		newEvents[length] = event;
+		$('.calendar, .day-calendar, .calendar2').fullCalendar('addEventSource', event);
 		newDesc[length] = $('#comment').val();
 		Meteor.call('updateUser', user, newEvents, newDesc);
 		resetForm();
@@ -116,7 +119,7 @@ function resetForm() {
 	$('#start-date').val("");
 	$('#end-date').val("");
 	$('#html5colorpicker').val("#000000");
-	$('#all-day').val(false);
+	$('#all-day').val("on");
 }
 
 function addCalendarEvent() {
@@ -133,6 +136,7 @@ function addCalendarEvent() {
 	    'color': color,
 	    'allDay': allDay
     };
+
     $('.calendar, .day-calendar, .calendar2').fullCalendar('renderEvent', eventObject, true);
     return eventObject;
 }
