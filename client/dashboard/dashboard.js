@@ -99,13 +99,13 @@ function eventIndex(title) {
 
 function addNewEvent() {
 	if (eventIndex(title) === -1) {
-		let event = addCalendarEvent();
+		let newEvent = addCalendarEvent();
 		let user = Session.get('currentUser');
 		let length = AccountsCollection.findOne({'username' : user}).events.length;
 		let newEvents = AccountsCollection.findOne({'username' : user}).events;
 		let newDesc = AccountsCollection.findOne({'username' : user}).desc;
-		newEvents[length] = event;
-		$('.calendar, .day-calendar, .calendar2').fullCalendar('addEventSource', event);
+		newEvents[length] = newEvent;
+		$('.calendar, .day-calendar, .calendar2').fullCalendar('addEventSource', newEvent);
 		newDesc[length] = $('#comment').val();
 		Meteor.call('updateUser', user, newEvents, newDesc);
 		resetForm();
