@@ -17,7 +17,10 @@ Template.dashboard.rendered = function () {
 	    		removeEvent(eventIndex(title), calEvent.id);
 			}
     	},
-
+    	eventDrop: function(changedEvent) {
+	    	updateDate(changedEvent);
+	    },
+	    editable: true,
     	height: (screen.width / 4.5)
 	});
 	$('.calendar2').fullCalendar({
@@ -36,8 +39,15 @@ Template.dashboard.rendered = function () {
 	    		removeEvent(eventIndex(title), calEvent.id);
 			}
     	},
+    	eventDrop: function(changedEvent) {
+	    	updateDate(changedEvent);
+	    },
+	    eventResize: function(changedEvent) {
+	    	updateDate(changedEvent);
+	    },
     	height: (screen.height / 2.5),
-    	defaultView: 'agendaWeek'
+    	defaultView: 'agendaWeek',
+    	editable: true
 	});
 	$('.day-calendar').fullCalendar({
 		header: {
@@ -50,8 +60,15 @@ Template.dashboard.rendered = function () {
 			$('#event-description-content').html(
 				AccountsCollection.findOne({'username' : Session.get('currentUser')}).desc[eventIndex(calEvent.title)]);
     	},
+	    eventDrop: function(changedEvent) {
+	    	updateDate(changedEvent);
+	    },
+	    eventResize: function(changedEvent) {
+	    	updateDate(changedEvent);
+	    },
 	    defaultView: 'agendaDay',
-	    height: (screen.height / 1.215)
+	    height: (screen.height / 1.215),
+	    editable: true
 	});
 	$('.datetimepicker1').datetimepicker();
 	$('.datetimepicker2').datetimepicker();
@@ -65,7 +82,21 @@ Template.dashboard.events({
     },
 });
 
-selectedEvent = undefined
+selectedEvent = undefined;
+
+function updateDate(changedEvent) {
+	let user = Session.get('currentUser');
+	let events = AccountsCollection.findOne({'username' : user}).events;
+	let temp = events;
+	let index = eventIndex(changedEvent.title);
+	if(index > -1) {
+		events[index].start = changedEvent.start.format();
+		events[index].end = changedEvent.end.format();
+		Meteor.call('updateUser', user, events, AccountsCollection.findOne({'username' : user}).desc);
+		$('.calendar, .day-calendar, .calendar2').fullCalendar('removeEvents', changedEvent.id);
+		$('.calendar, .day-calendar, .calendar2').fullCalendar('addEventSource', events);
+	}
+}
 
 function removeEvent(eventIndex, id) {
 	let events = AccountsCollection.findOne({'username' : Session.get('currentUser')}).events;
