@@ -1,5 +1,4 @@
 body {
-	background-color: #FEFEFE;
+	background: url('./public/images/background.png');
 	overflow-x: hidden;
-	overflow-y: scroll;
 }

@@ -45,7 +45,7 @@ Template.dashboard.rendered = function () {
 	    eventResize: function(changedEvent) {
 	    	updateDate(changedEvent);
 	    },
-    	height: (screen.height / 2.5),
+    	height: (screen.height / 2.52),
     	defaultView: 'agendaWeek',
     	editable: true
 	});
@@ -89,6 +89,7 @@ function updateDate(changedEvent) {
 	let events = AccountsCollection.findOne({'username' : user}).events;
 	let temp = events;
 	let index = eventIndex(changedEvent.title);
+
 	if(index > -1) {
 		events[index].start = changedEvent.start.format();
 		events[index].end = changedEvent.end.format();

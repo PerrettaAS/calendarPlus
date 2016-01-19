@@ -1,24 +1,25 @@
 .dashboard-container {
 	margin: 0px;
-	padding: 5px;
+	padding: 0px;
+	background-image: url("/img/background.jpg");
 }
 
 .content-container {
-	height: 93.5vh;
+	height: 93vh;
 }
 
 .calendar, .calendar2 {
 	padding: 10px;
-	background-color: rgba(230, 230, 230, 0.5);
-	border: 5px solid #FFFFFF;
+	background-color: rgba(30, 30, 30, 0.6);
 	min-height: 45vh;
+	border: 2px solid rgba(0, 0, 0, 0.0);
 }
 
 .day-calendar {
 	padding: 10px;
-	background-color: rgba(230, 230, 230, 0.5);
-	border: 5px solid #FFFFFF;
+	background-color: rgba(30, 30, 30, 0.6);
 	padding-bottom: 20px;
+	color: white;
 }
 
 .add-event-container {
@@ -29,10 +30,15 @@
 .add-event-container h1 {
 	font-size: 200%;
 	font-weight: bold;
+	color: white;
 }
 
+.fc-unthemed .fc-today {
+  background: rgba(0, 0, 80, .7);
+}
 .event-container {
 	margin-top: 10px;
+	padding: 10px;
 	border-style: solid;
 	border-color: rgba(150, 150, 150, 0.6);
     border-width: thin 0px 0px 0px;
@@ -56,24 +62,26 @@ textarea {
 
 div .calendar, div .calendar2 {
 	overflow: auto;
+	color: white;
 }
 
 .content-container {
 	padding: 10px;
-	background-color: rgba(230, 230, 230, 0.5);
-	border: 5px solid #FFFFFF;
+	background-color: rgba(30, 30, 30, 0.6);
 	padding-bottom: 20px;
 }
 
 .view-event-container {
 	padding-bottom: 10px;
 	display: inline;
+	color: white;
 }
 
 #event-title {
 	text-align: center;
 	font-weight: bold;
 	font-size: 200%;
+	color: white;
 }
 
 #event-description {
@@ -82,6 +90,10 @@ div .calendar, div .calendar2 {
 
 #event-description-content {
 	text-indent: 15px
+}
+
+.event-container label {
+	color: white;
 }
 
 

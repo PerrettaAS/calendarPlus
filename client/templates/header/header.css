@@ -1,5 +1,5 @@
 nav {
-	height: 50px;
+	height: 70px;
 	background-color: #000000;
 	color: #FFFFFF;
 	margin-bottom: 0px;
@@ -14,7 +14,7 @@ nav {
 	padding: 0px;
 	font-family: "Lato", sans-serif;
 	font-size: 200%;
-	line-height: 50px;
+	line-height: 70px;
 }
 
 .logo h1 i { 
@@ -25,14 +25,14 @@ nav ul.col-xs-6 {
 	display: inline-block;
 	list-style: none;
 	float: right;
-	height: 50px;
+	height: 70px;
 }
 
 nav ul li {
 	position: relative;
 	color: #FFFFFF;
 	float: right;
-	line-height: 50px;
+	line-height: 70px;
 	margin-right: 10%;
 	font-family: "Lato", sans-serif;
 	font-size: 125%;
