@@ -5,20 +5,20 @@
 }
 
 .content-container {
-	min-height: 50vw;
+	min-height: 48vw;
 }
 
 .calendar, .calendar2 {
 	padding: 15px;
 	background-color: rgba(30, 30, 30, 0.4);
-	min-height: 25vw;
+	min-height: 23.9vw;
 	border: 2px solid rgba(0, 0, 0, 0.0);
 }
 
 .day-calendar {
 	padding: 15px;
 	background-color: rgba(30, 30, 30, 0.4);
-	min-height: 50vw;
+	min-height: 48vw;
 	padding-bottom: 20px;
 	color: white;
 }
