@@ -17,11 +17,13 @@ Template.dashboard.rendered = function () {
 	    		removeEvent(eventIndex(title), calEvent.id);
 			}
     	},
+
     	eventDrop: function(changedEvent) {
 	    	updateDate(changedEvent);
 	    },
+
 	    editable: true,
-    	height: (screen.width / 4.5)
+    	height: (screen.width / 4.85)
 	});
 	$('.calendar2').fullCalendar({
 		header: {
@@ -87,7 +89,6 @@ selectedEvent = undefined;
 function updateDate(changedEvent) {
 	let user = Session.get('currentUser');
 	let events = AccountsCollection.findOne({'username' : user}).events;
-	let temp = events;
 	let index = eventIndex(changedEvent.title);
 
 	if(index > -1) {
