@@ -1,0 +1,3 @@
+# Calendar+
+
+Calendar+ is a dynamic time-management meteor based web application that allows users to easily and quickly, create and manage their calendar. I developed this application because I felt that creating a quick schedule on google calendar could have been done faster. With Calendar+ I also can view my calendar in the same window from different perspectives, allowing me to get a good grasp of my schedule. 
